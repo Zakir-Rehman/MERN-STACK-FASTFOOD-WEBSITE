@@ -1,0 +1,132 @@
+.food-item {
+    width: 100%;
+    margin: auto;
+    border-radius: 15px;
+    box-shadow: 0 0 5px #ccc;
+    transition: 0.3s;
+    animation: fadeIn 1s;
+    /* break-inside: avoid;
+    margin-bottom: 30px; */
+}
+
+.food-item-image {
+    width: 100%;
+    border-radius: 15px 15px 0 0;
+}
+
+.food-item-info {
+    padding: 20px;
+}
+
+.food-item-name-rating {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    flex-wrap: wrap;
+    gap: 3px;
+
+}
+
+.food-item-name-rating p {
+    margin-bottom: 0;
+    font-size: 16px;
+    font-weight: 550;
+    text-wrap: nowrap;
+}
+.food-item-name-rating img{
+    width: 74px;
+}
+.food-item-desc{
+    font-size: 16px;
+    line-height: 20px;
+}
+.food-item-price{
+    color: #FF542E;
+    font-size: 22px;
+    font-weight: 500;
+    margin: 10px 0px;
+}
+.food-item-img-container{
+    position: relative;
+
+}
+.food-item-img-container .add{
+    width: 40px;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    cursor: pointer;
+    border-radius: 50%;
+}
+.food-item-counter{
+    position: absolute;
+     bottom: 10px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    gap:10px;
+    padding: 6px;
+    border-radius: 50px;
+    background-color: #fff;
+}
+.food-item-counter p{
+    margin-bottom: 0;
+}
+.food-item-counter img{
+    width: 30px;
+}
+/* .cart-show-div{
+        position: fixed;
+    bottom: 10px;
+    right: 83px;
+    background: #FFD814;
+    display: flex;
+    align-items: center;
+    gap: 36px;
+} */
+.cart-show-div {
+        position: fixed;
+    bottom: 1px;
+    right: 40%;
+    background: #FFD814;
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    padding: 10px 20px;
+    border-radius: 12px 12px 0 0;
+    /* box-shadow: 0 4px 8px rgba(0,0,0,0.2); */
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.3s ease, box-shadow 0.2s ease;
+}
+
+.cart-show-div:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+}
+
+.cart-show-inner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    color: #000;
+}
+
+.cart-show-inner h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.cart-show-div .para1 {
+    background: #FF4C24;
+    color: white;
+    padding: 1px 8px;
+    border-radius: 50%;
+    font-weight: bold;
+    margin: 0;
+    min-width: 24px;
+    text-align: center;
+}

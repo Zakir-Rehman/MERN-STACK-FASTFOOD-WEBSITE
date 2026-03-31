@@ -1,0 +1,41 @@
+.slidebar {
+    border-right: 1.5px solid #aeaeae;
+    width: 18%;
+    display: flex;
+    flex-direction: column;
+    /* min-height: 100vh; */
+        height: 509px;
+    font-size: max(1vw,10px);
+}
+
+.sliderbar-options {
+    display: flex;
+    padding-top: 50px;
+    padding-left: 20%;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sliderbar-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border: 1px solid #aeaeae;
+    border-right: none;
+    padding: 8px 10px;
+    border-radius: 4px 0px 0px 4px;
+    cursor: pointer;
+}
+.sliderbar-option.active{
+    background-color: #ff4c2429;
+    transition: 0.3s;
+}
+
+.opt-logo {
+    font-size: 1.7rem;
+}
+@media (max-width:430px) {
+    .sliderbar-option h2{
+        display: none;
+    }
+}

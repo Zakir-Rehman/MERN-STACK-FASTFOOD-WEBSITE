@@ -1,0 +1,119 @@
+/* ===== Form Container ===== */
+.add {
+  max-width: 600px;
+  width: 90%;
+  margin: 30px auto;
+  background: #fff;
+  padding: 25px 20px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  font-family: 'Arial', sans-serif;
+      height: max-content;
+}
+
+/* ===== Flex column helper ===== */
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+/* ===== Image upload ===== */
+.add-img-upload p {
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.add-img-upload label img {
+    width: 115px;
+    height: 86px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px dashed #FF4C24;
+    cursor: pointer;
+    transition: 0.3s all;
+}
+
+.add-img-upload label img:hover {
+  transform: scale(1.05);
+  border-color: #e03e1f;
+}
+
+/* ===== Inputs & Textarea ===== */
+.add-product-name p,
+.add-product-description p,
+.add-category p,
+.add-price p {
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.add input,
+.add textarea,
+.add select {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 0.95rem;
+  transition: 0.2s all;
+  resize: none;
+}
+
+.add input:focus,
+.add textarea:focus,
+.add select:focus {
+  border-color: #FF4C24;
+  box-shadow: 0 0 5px rgba(255,76,36,0.5);
+}
+
+/* ===== Category + Price ===== */
+.add-category-price {
+  display: flex;
+  gap: 15px;
+}
+
+.add-category,
+.add-price {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== Button ===== */
+.add-btn {
+  padding: 12px 0;
+  background: #FF4C24;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s all;
+      margin-top: 20px;
+
+}
+
+.add-btn:hover {
+  background: #e03e1f;
+  transform: scale(1.02);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 700px) {
+  .add-category-price {
+    flex-direction: column;
+  }
+
+  .add-category,
+  .add-price {
+    width: 100%;
+  }
+
+  .add-img-upload label img {
+    width: 100px;
+    height: 100px;
+  }
+}

@@ -1,0 +1,264 @@
+.my-orders {
+    padding: 20px;
+}
+
+.my-orders h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.my-orders-order {
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.modal-header h3 {
+    line-height: 0;
+}
+
+.order-summary p {
+    margin: 3px 0;
+}
+
+.order-status {
+    display: flex;
+    align-items: center;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 2px;
+    margin-left: 8px;
+}
+
+.track-btn {
+    padding: 5px 12px;
+    background-color: #FF4C24;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.track-btn:hover {
+    opacity: 0.9;
+}
+
+/* Modal styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    padding: 20px;
+    border-radius: 10px;
+    /* max-width: 450px; */
+    max-width: 534px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background: #fff !important;
+    border-radius: 12px !important;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.modal-icon {
+    width: 40px;
+    height: 40px;
+}
+
+.modal-body ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.modal-body ul li {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.item-name {
+    flex: 2;
+}
+
+.item-qty {
+    flex: 1;
+    text-align: center;
+}
+
+.item-price {
+    flex: 1;
+    text-align: right;
+}
+
+.order-info p {
+    margin: 5px 0;
+}
+
+.delivery-info h4 {
+    margin-bottom: 5px;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.close-btn {
+    padding: 5px 12px;
+    background: #FF4C24;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    opacity: 0.9;
+}
+
+.delivery-table-container {
+    margin-top: 15px;
+    overflow-x: auto;
+    /* responsive table */
+}
+
+.delivery-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14px;
+}
+
+.delivery-table th,
+.delivery-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.delivery-table th {
+    background-color: #f5f5f5;
+    font-weight: bold;
+}
+
+.delivery-table tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.delivery-table tr:hover {
+    background-color: #f1f1f1;
+}
+
+@media (max-width: 768px) {
+    .my-orders-order {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .order-header,
+    .order-summary {
+        width: 100%;
+    }
+
+    .track-btn {
+        align-self: flex-end;
+    }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 15px;
+    }
+
+    .modal-header h3 {
+        font-size: 16px;
+    }
+
+    .delivery-table th,
+    .delivery-table td {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .item-name,
+    .item-qty,
+    .item-price {
+        font-size: 12px;
+    }
+
+    .track-btn,
+    .close-btn {
+        padding: 4px 10px;
+        font-size: 12px;
+    }
+}
+
+
+.title-div {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 0.5fr 0.5fr 0.5fr 0.5fr;
+    align-items: center;
+    border-bottom: 1px solid #aeaeae;
+}
+
+.order-data {
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 0.5fr 0.5fr 0.5fr 0.5fr;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.items-div {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.order-man-div {
+    border: 1px solid #aeaeae99;
+    border-radius: 14px;
+    padding: 7px 12px;
+    
+}

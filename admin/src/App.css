@@ -1,0 +1,6 @@
+.app{
+    position: relative;
+}
+.app-content{
+    display: flex;
+}

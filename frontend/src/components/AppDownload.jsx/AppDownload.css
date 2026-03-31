@@ -1,0 +1,29 @@
+.app-download{
+    margin: auto auto;
+    margin-top: 100px;
+    font-size: max(3vw,20px);
+    text-align: center;
+    font-weight: 550;
+}
+.app-download p{
+    font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  opacity: 0.7;
+}
+.app-download-platforms{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: max(2vw,10px);
+    margin-top: 30px;
+}
+.app-download-platforms img{
+    width: max(30vw,120px);
+    max-width: 180px;
+    transition: 0.5s;
+    cursor: pointer;
+}
+.app-download-platforms img:hover{
+    transform: scale(1.05);
+}
