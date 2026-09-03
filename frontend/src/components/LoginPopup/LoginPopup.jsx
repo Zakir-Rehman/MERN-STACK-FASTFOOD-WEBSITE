@@ -6,8 +6,8 @@ import axios from 'axios'
 import { ToastContainer, toast } from 'react-toastify';
 import { RiErrorWarningLine } from "react-icons/ri";
 function LoginPopup({ setShowLogin }) {
-    const { url, setToken, token, currState, setCurrState } = useContext(StoreContext)
-
+    const {  setToken, token, currState, setCurrState } = useContext(StoreContext)
+    const url = "https://fastfood-backend-v1.vercel.app";
     const [data, setData] = useState({
         name: "",
         email: "",
