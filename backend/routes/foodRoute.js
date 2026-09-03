@@ -18,20 +18,17 @@
 // foodRouter.post("/remove",removeFood)
 // foodRouter.put("/edit", editFood);
 
-  
+
 // export default foodRouter;
 
 
 import express from "express";
-import { listFood} from '../controllers/foodController.js';
+import { editFood, listFood, removeFood } from '../controllers/foodController.js';
 
 const foodRouter = express.Router();
-foodRouter.get("/list",listFood)
-foodRouter.get("/test", (req, res) => {
-    res.json({
-        success: true,
-        message: "Food router working"
-    });
-});
+foodRouter.get("/list", listFood) //done
+foodRouter.post("/remove", removeFood) 
+foodRouter.put("/edit", editFood);
+ 
 
 export default foodRouter;
