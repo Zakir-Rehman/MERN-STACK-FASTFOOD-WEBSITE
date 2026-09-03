@@ -17,8 +17,8 @@ app.use(express.json())
 connectDB();
 
 app.use("/api/user", userRouter)
-// app.use("/api/food", foodRouter)
-app.use("/images", express.static("uploads"))
+app.use("/api/food", foodRouter)
+// app.use("/images", express.static("uploads"))
 app.get("/", (req, res) => {
     res.json({
         userLogin:'done',
