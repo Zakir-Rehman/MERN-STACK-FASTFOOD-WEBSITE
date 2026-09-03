@@ -164,15 +164,28 @@ const placeOrder = async (req, res) => {
 
     try {
         // save order in DB
+        // const order = await orderModel.create({
+        //     userId,
+        //     items,
+        //     totalAmount,
+        //     deliveryDetails,
+        //     status: "Pending"
+        // });
         const order = await orderModel.create({
-            userId,
+            orderType: "ONLINE",
+            userId: req.userId,
             items,
             totalAmount,
             deliveryDetails,
-            status: "Pending"
+            paymentMethod: "COD",
         });
 
-        res.json({ success: true, message: "Order placed", order });
+        res.json({
+            success: true,
+            message: "Order placed",
+            order
+        });
+        // res.json({ success: true, message: "Order placed", order });
     } catch (err) {
         console.log(err);
         res.status(500).json({ success: false, message: "Server error" });
@@ -210,14 +223,14 @@ const userOrders = async (req, res) => {
     }
 };
 //listing order for admin panel
-const listOrder = async(req,res)=>{
-try {
-    const orders = await orderModel.find({}).sort({ createdAt: -1 }); ;
-    res.json({success:true,data:orders})
-} catch (error) {
-console.log(error)
-res.json({success:false,message:"Error"})    
-}
+const listOrder = async (req, res) => {
+    try {
+        const orders = await orderModel.find({}).sort({ createdAt: -1 });;
+        res.json({ success: true, data: orders })
+    } catch (error) {
+        console.log(error)
+        res.json({ success: false, message: "Error" })
+    }
 }
 const updateStatus = async (req, res) => {
     try {
@@ -229,6 +242,56 @@ const updateStatus = async (req, res) => {
     }
 };
 
+const placePOSOrder = async (req, res) => {
 
+    const {
+        items,
+        totalAmount,
+        cashierName,
+        customerType,
+        paymentMethod
+    } = req.body;
 
-export { placeOrder, userOrders ,listOrder,updateStatus};
+    if (!items || items.length === 0) {
+        return res.status(400).json({
+            success: false,
+            message: "Cart is empty"
+        });
+    }
+
+    try {
+
+        const customerCode =
+            "POS-" + Math.random().toString(36).substring(2, 8).toUpperCase();
+
+        const order = await orderModel.create({
+            orderType: "POS",
+            customerCode,
+            customerType: "Walk-in",
+            paymentMethod: "Cash",
+            paymentStatus: "Paid",
+            status: "Completed",
+            items,
+            totalAmount,
+        });
+
+        res.json({
+            success: true,
+            message: "POS Order Saved",
+            order
+        });
+
+    } catch (err) {
+
+        console.log(err);
+
+        res.status(500).json({
+            success: false,
+            message: "Server Error"
+        });
+
+    }
+
+}
+
+export { placeOrder, userOrders, listOrder, updateStatus, placePOSOrder };

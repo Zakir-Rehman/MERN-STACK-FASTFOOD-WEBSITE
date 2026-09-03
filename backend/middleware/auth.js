@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import config from "../config/config.js";
 
 // const authMiddleWare = async (req, res, next) => {
 //     const { token } = req.headers;
@@ -29,7 +30,7 @@ const authMiddleWare = async (req, res, next) => {
     const token = authHeader.split(" ")[1];
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+        const decoded = jwt.verify(token, config.jwtSecret);
 
         // ✅ SAME NAME AS CONTROLLER EXPECTS
         req.userId = decoded.id;

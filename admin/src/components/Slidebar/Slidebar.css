@@ -1,9 +1,8 @@
-.slidebar {
+/* .slidebar {
     border-right: 1.5px solid #aeaeae;
     width: 18%;
     display: flex;
-    flex-direction: column;
-    /* min-height: 100vh; */
+    flex-direction: column; 
         height: 509px;
     font-size: max(1vw,10px);
 }
@@ -36,6 +35,173 @@
 }
 @media (max-width:430px) {
     .sliderbar-option h2{
+        display: none;
+    }
+} */
+
+
+.slidebar {
+    border-right: 1.5px solid #e5e5e5;
+    width: 240px;
+    min-width: 240px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background: #fff;
+    font-size: 14px;
+    transition: width 0.3s, min-width 0.3s;
+    padding-bottom: 16px;
+}
+
+.slidebar.collapsed {
+    width: 76px;
+    min-width: 76px;
+    align-items: center;
+}
+
+.slidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 20px 16px 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.brand-logo {
+    background: #FF4C24;
+    color: #fff;
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+
+.brand-text h1 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1.2;
+}
+
+.brand-text span {
+    font-size: 0.7rem;
+    color: #8a8a8a;
+}
+
+.sliderbar-options {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 12px;
+    flex: 1;
+}
+
+.section-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: #a0a0a0;
+    letter-spacing: 0.05em;
+    padding: 0 8px 8px 8px;
+}
+
+.sliderbar-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    color: #4a4a4a;
+    text-decoration: none;
+    position: relative;
+    transition: background 0.2s;
+}
+
+.sliderbar-option:hover {
+    background: #f5f5f5;
+}
+
+.sliderbar-option.active {
+    background-color: #FF4C24;
+    color: #fff;
+}
+
+.opt-logo {
+    font-size: 1.2rem;
+    min-width: 20px;
+}
+
+.sliderbar-option h2 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.badge {
+    margin-left: auto;
+    background: #fff;
+    color: #FF4C24;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 1px 7px;
+    border-radius: 10px;
+}
+
+.pro-card {
+    margin: 12px;
+    background: #0f1729;
+    border-radius: 12px;
+    padding: 16px;
+    color: #fff;
+}
+
+.pro-card h3 {
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+}
+
+.pro-card p {
+    font-size: 0.75rem;
+    color: #b5b9c4;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.upgrade-btn {
+    background: #FF4C24;
+    color: #fff;
+    border: none;
+    width: 100%;
+    padding: 8px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.collapse-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 20px;
+    color: #8a8a8a;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    .slidebar {
+        width: 76px;
+        min-width: 76px;
+    }
+    .brand-text,
+    .section-label,
+    .sliderbar-option h2,
+    .pro-card {
         display: none;
     }
 }

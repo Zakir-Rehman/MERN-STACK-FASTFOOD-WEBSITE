@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import config from '../config/config.js';
 
 export const verifyToken = (req, res, next) => {
   const authHeader = req.headers['authorization'];
@@ -8,7 +9,7 @@ export const verifyToken = (req, res, next) => {
   if (!token) return res.status(401).json({ success: false, message: "Invalid token" });
 
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, config.jwtSecret);
     req.userId = decoded.id; // ye userId route handler me milega
     next();
   } catch (err) {

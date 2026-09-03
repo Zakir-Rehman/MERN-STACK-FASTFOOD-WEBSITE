@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import axios from "axios";
-
+import api from "../services/axios";
 export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
@@ -19,7 +18,7 @@ const StoreContextProvider = (props) => {
 
     if (token) {
       try {
-        await axios.post(
+        await api.post(
           `${url}/api/cart/add`,
           { itemId },
           { headers: { Authorization: `Bearer ${token}` } }
@@ -39,8 +38,8 @@ const StoreContextProvider = (props) => {
 
     if (token) {
       try {
-        await axios.post(
-          `${url}/api/cart/remove`,
+        await api.post(
+          `/api/cart/remove`,
           { itemId },
           { headers: { Authorization: `Bearer ${token}` } }
         );
@@ -49,7 +48,11 @@ const StoreContextProvider = (props) => {
       }
     }
   };
-
+  const clearCart = () => {
+    setCartItems({});
+    // agar localStorage mein bhi save kar rahe ho to:
+    localStorage.removeItem("cartItems"); // ya jo bhi key use ki hai
+  }
   // ✅ Get total amount
   const getTotalCartAmount = () => {
     let totalAmount = 0;
@@ -65,7 +68,7 @@ const StoreContextProvider = (props) => {
   // ✅ Fetch food list
   const fetchFoodList = async () => {
     try {
-      const response = await axios.get(`${url}/api/food/list`);
+      const response = await api.get(`/api/food/list`);
       setFoodList(response.data.data);
     } catch (err) {
       console.error("Fetch food list error:", err);
@@ -75,8 +78,8 @@ const StoreContextProvider = (props) => {
   // ✅ Load cart from backend
   const loadCartData = async (savedToken) => {
     try {
-      const response = await axios.post(
-        `${url}/api/cart/get`,
+      const response = await api.post(
+        `/api/cart/get`,
         {},
         { headers: { Authorization: `Bearer ${savedToken}` } }
       );
@@ -121,7 +124,8 @@ const StoreContextProvider = (props) => {
     setToken,
     totalItems,
     currState,
-    setCurrState
+    setCurrState,
+    clearCart
   };
 
   return <StoreContext.Provider value={contextValue}>{props.children}</StoreContext.Provider>;

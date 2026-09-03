@@ -1,13 +1,14 @@
 import React from 'react'
 import './Footer.css'
 import { assets } from '../../assets/frontend_assets/assets'
+import { globalStrings } from '../../../../globalRes/strings'
 function Footer() {
     return (
         <div className='footer' id='footer'>
             <div className="footer-content">
                 <div className="footer-content-left">
                     {/* <img src={assets.logo} alt="" /> */}
-                    <h1>Food Junction</h1>
+                    <h1>{globalStrings.appName}</h1>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima rerum iusto vitae neque, obcaecati nihil ipsum molestias itaque illum assumenda vero at eaque veritatis porro sapiente commodi ea sint sunt!</p>
                     <div className="footer-social-icons">
                         <img src={assets.facebook_icon} alt="" />
@@ -27,8 +28,8 @@ function Footer() {
                 <div className="footer-content-right">
                     <h2>GET IN TOUCH</h2>
                     <ol>
-                        <li>+92 3150239091</li>
-                        <li>zakirmala099@gmail.com</li>
+                        <li>{globalStrings.phoneNumber}</li>
+                        <li>{globalStrings.gmail}</li>
                     </ol>
                 </div>
             </div>

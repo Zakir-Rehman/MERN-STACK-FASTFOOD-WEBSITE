@@ -1,0 +1,150 @@
+.customers-cont {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+.customers-header h2 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.customers-subtitle {
+    font-size: 0.85rem;
+    color: #8a8a8a;
+    margin-bottom: 18px;
+}
+
+.customers-search-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px 14px;
+    background: #fff;
+    margin-bottom: 18px;
+    max-width: 420px;
+}
+
+.customers-search-icon { color: #9a9a9a; }
+
+.customers-search-wrap input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+}
+
+.customers-table {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.customers-row {
+    display: grid;
+    grid-template-columns: 1.8fr 1.6fr 0.6fr 1fr 0.8fr 0.8fr 0.6fr;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 16px;
+    border-bottom: 1px solid #f5f5f5;
+    font-size: 0.85rem;
+}
+
+.customers-row:last-child { border-bottom: none; }
+
+.customers-row-title {
+    background: #f9f9f9;
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    color: #a0a0a0;
+    letter-spacing: 0.03em;
+}
+
+.customer-cell {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.customer-avatar {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 50%;
+    background: #ffe9e0;
+    color: #FF4C24;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.customer-name {
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.customer-code {
+    font-size: 0.7rem;
+    color: #a0a0a0;
+}
+
+.contact-cell {
+    display: flex;
+    flex-direction: column;
+    color: #4a4a4a;
+    font-size: 0.8rem;
+}
+
+.contact-email {
+    font-size: 0.72rem;
+    color: #a0a0a0;
+}
+
+.spending-cell {
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+.dim-cell {
+    color: #c0c0c0;
+}
+
+.view-btn {
+    padding: 6px 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #fff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    justify-self: end;
+}
+
+.view-btn:hover {
+    border-color: #FF4C24;
+    color: #FF4C24;
+}
+
+.customers-empty {
+    text-align: center;
+    color: #a0a0a0;
+    padding: 30px 0;
+}
+
+@media (max-width: 900px) {
+    .customers-row {
+        grid-template-columns: 2fr 1fr 1fr;
+    }
+    .customers-row > *:nth-child(5),
+    .customers-row > *:nth-child(6) {
+        display: none;
+    }
+}

@@ -1,84 +1,4 @@
-// import React, { useEffect, useState, useContext } from 'react';
-// import { StoreContext } from '../../Context/StoreContext';
-// import { toast } from 'react-toastify';
-// import axios from 'axios';
-// import './MyOrders.css';
-// import { assets } from '../../assets/frontend_assets/assets';
 
-// function MyOrders() {
-//     const { url, token, userId } = useContext(StoreContext);
-//     const [data, setData] = useState([]);
-
-//     const fetchOrders = async () => {
-//         try {
-//             const response = await axios.post(
-//                 url + "/api/order/userorders",
-//                 { userId },
-//                 {
-//                     headers: {
-//                         Authorization: `Bearer ${token}`
-//                     }
-//                 }
-//             );
-//             console.log(response)
-//             if (response.data.success) {
-//                 setData(response.data.data);
-//             } else {
-//                 toast.error("Failed to fetch orders");
-//             }
-//         } catch (err) {
-//             console.log(err);
-//             toast.error("Error fetching orders");
-//         }
-//     };
-
-//     useEffect(() => {
-//         if (token) {
-//             fetchOrders();
-//         } else {
-//             toast.error("Please login to view orders");
-//         }
-//     }, [token]);
-
-//     return (
-//         <div className="my-orders">
-//             <h2>My Orders</h2>
-
-//             <div className="container">
-//                 {data.length === 0 && <p>No orders found</p>}
-
-//                 {data.map((order) => (
-//                     <div className="my-orders-order" key={order._id}>
-
-//                         <img src={assets.parcel_icon} alt="order" />
-
-//                         {/* ITEMS */}
-//                         <p className="items">
-//                             {order.items.map((item, index) => (
-//                                 <span key={index}>
-//                                     {item.name} x {item.quantity}
-//                                     {index !== order.items.length - 1 && ", "}
-//                                 </span>
-//                             ))}
-//                         </p>
-
-//                         {/* TOTAL */}
-//                         <p><b>$ {order.totalAmount}</b></p>
-
-//                         {/* STATUS */}
-//                         <p className="status">
-//                             <span>&#x25cf;</span> {order.status || "Processing"}
-//                         </p>
-
-//                         <button>Track Order</button>
-//                     </div>
-//                 ))}
-//             </div>
-//         </div>
-//     );
-// }
-
-// export default MyOrders;
 
 import React, { useEffect, useState, useContext } from 'react';
 import { StoreContext } from '../../Context/StoreContext';
@@ -86,6 +6,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import './MyOrders.css';
 import { assets } from '../../assets/frontend_assets/assets';
+import api from '../../services/axios';
 
 function MyOrders() {
     const { url, token } = useContext(StoreContext);
@@ -95,8 +16,8 @@ function MyOrders() {
     // Fetch orders
     const fetchOrders = async () => {
         try {
-            const response = await axios.post(
-                url +"/api/order/userorders",
+            const response = await api.post(
+              "/api/order/userorders",
                 {},
                 {
                     headers: { Authorization: `Bearer ${token}` }
@@ -120,25 +41,36 @@ function MyOrders() {
     }, [token]);
 
     // Status color helper
-    const statusColor = (status) => {
-        switch (status?.toLowerCase()) {
-            case "pending": return "orange";
-            case "confirmed": return "blue";
-            case "delivered": return "green";
-            case "cancelled": return "red";
-            default: return "gray";
-        }
+    const statusStyle = (status) => {
+        const map = {
+            pending: { bg: "#faeeda", color: "#854F0B" },
+            confirmed: { bg: "#E6F1FB", color: "#185FA5" },
+            delivered: { bg: "#EAF3DE", color: "#3B6D11" },
+            cancelled: { bg: "#FCEBEB", color: "#A32D2D" },
+            preparing: { bg: "#EEEDFE", color: "#534AB7" },
+        };
+        return map[status?.toLowerCase()] || { bg: "#f0f0f0", color: "#666" };
     };
+    // const statusColor = (status) => {
+    //     switch (status?.toLowerCase()) {
+    //         case "pending": return "orange";
+    //         case "confirmed": return "blue";
+    //         case "delivered": return "green";
+    //         case "cancelled": return "red";
+    //         default: return "gray";
+    //     }
+    // };
 
     return (
         <div className="my-orders">
             <h2>My Orders</h2>
 
-            <div className="container">
+            <div className="order-container">
                 {data.length === 0 && <p>No orders found</p>}
 
-                {data.map((order) => (
+                {data.length > 0 && (
                     <div className="order-man-div">
+                        {/* ✅ Title sirf ek baar — map ke bahar */}
                         <div className="title-div">
                             <p>ID</p>
                             <p>Items</p>
@@ -147,12 +79,12 @@ function MyOrders() {
                             <p>Status</p>
                             <p>Action</p>
                         </div>
-                        <div className="order-data">
-                            {/* <img src={assets.parcel_icon} alt="" /> */}
-                            {/* <span className="order-id"></span> */}
+
+                        {/* ✅ Sirf data map ho */}
+                        {/* {data.map((order) => (
+                        <div className="order-data" key={order._id}>
                             <p>Order #{order._id.slice(-6)}</p>
                             <div className="items-div">
-
                                 {order.items.map((item, index) => (
                                     <p key={index}>
                                         {item.name} x {item.quantity}
@@ -162,22 +94,42 @@ function MyOrders() {
                             </div>
                             <p>{order.items.length}</p>
                             <p>$ {order.totalAmount}</p>
-                            {/* <p > {order.status || "Processing"}</p> */}
-                            <p>
-                                <span
-                                    className="status-dot"
-                                    style={{ backgroundColor: statusColor(order.status) }}
-                                ></span>
-                                {order.status || "Processing"}
-                            </p>
-                            <button
-                                className="track-btn"
-                                onClick={() => setSelectedOrder(order)}>
+                            <span className="status-badge" style={{ background: s.bg, color: s.color }}>
+                                <span className="status-dot" style={{ background: s.color }}></span>
+                                {order.status || "processing"}
+                            </span>
+                            <button className="track-btn" onClick={() => setSelectedOrder(order)}>
                                 Track Order
                             </button>
                         </div>
+                        ))} */}
+                        {data.map((order) => {
+                            const s = statusStyle(order.status); // ✅ yahan define karo
+                            return (
+                                <div className="order-data" key={order._id}>
+                                    <p>Order #{order._id.slice(-6)}</p>
+                                    <div className="items-div">
+                                        {order.items.map((item, index) => (
+                                            <p key={index}>
+                                                {item.name} x {item.quantity}
+                                                {index !== order.items.length - 1 && ", "}
+                                            </p>
+                                        ))}
+                                    </div>
+                                    <p>{order.items.length}</p>
+                                    <p>Rs {order.totalAmount}</p>
+                                    <span className="status-badge" style={{ background: s.bg, color: s.color }}>
+                                        <span className="status-dot" style={{ background: s.color }}></span>
+                                        {order.status || "processing"}
+                                    </span>
+                                    <button className="track-btn" onClick={() => setSelectedOrder(order)}>
+                                        Track Order
+                                    </button>
+                                </div>
+                            );
+                        })}
                     </div>
-                ))}
+                )}
             </div>
 
             {/* Modal */}
@@ -205,11 +157,18 @@ function MyOrders() {
                                 <p><b>Total Items:</b> {selectedOrder.items.length}</p>
                                 <p><b>Total Amount:</b> Rs {selectedOrder.totalAmount}</p>
                                 <p><b>Status:</b>
-                                      <span
-                                        className="status-dot"
-                                        style={{ backgroundColor: statusColor(selectedOrder.status) }}
-                                    ></span>
-                                    {selectedOrder.status || "Processing"}
+                                    {(() => {
+                                        const s = statusStyle(selectedOrder.status);
+                                        return (
+                                            <>
+                                                <span
+                                                    className="status-dot"
+                                                    style={{ backgroundColor: s.color }}
+                                                ></span>
+                                                {selectedOrder.status || "Processing"}
+                                            </>
+                                        );
+                                    })()}
                                 </p>
                             </div>
 

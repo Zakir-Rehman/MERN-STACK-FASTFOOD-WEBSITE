@@ -17,12 +17,12 @@ function FoodItem({ id, name, description, price, image, setShowLogin }) {
             setShowLogin(true)
         }
     }
-    
+
     return (
         <>
             <div className='food-item' >
                 <div className='food-item-img-container'>
-                    <img src={url + "/images/"+image} className='food-item-image' alt="" />
+                    <img src={url + "/images/" + image} className='food-item-image' alt="" />
                     {!cartItems[id]
                         ? <img className='add' src={assets.add_icon_white} onClick={() => addToCart(id)} alt='logo' />
                         : <div className='food-item-counter' >
@@ -46,13 +46,13 @@ function FoodItem({ id, name, description, price, image, setShowLogin }) {
                 </div>
             </div>
             {totalItems >= 1 && (
-                <div className="cart-show-div">
-                    <p className='para1'>{totalItems}</p>
-                    <Link to="/cart" className="cart-show-inner" >
+                <Link to="/cart" className="cart-show-inner" >
+                    <div className="cart-show-div">
+                        <p className='para1'>{totalItems}</p>
                         <BsCart />
                         <h2>Cart</h2>
-                    </Link>
-                </div>
+                    </div>
+                </Link>
             )}
         </>
     )
