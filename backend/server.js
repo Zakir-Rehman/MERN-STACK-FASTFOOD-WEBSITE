@@ -44,7 +44,7 @@ app.use(express.json())
 
 
 //DB CONNECTION
-connectDB();
+// connectDB(); 
 
 //api end points
 
