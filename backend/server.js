@@ -67,8 +67,8 @@ app.get("/operation", async (req, res) => {
 app.get("/",(req,res)=>{
     res.send("Api Working....")
 })
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`)
-})
+// app.listen(port, () => {
+//     console.log(`Server is running on http://localhost:${port}`)
+// })
 
-// export default app;
+export default app;
