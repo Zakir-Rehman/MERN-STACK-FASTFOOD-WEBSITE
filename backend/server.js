@@ -8,6 +8,10 @@ app.use(cors({
 app.options(/.*/, cors()); // yeh bhi rakho preflight ke liye
 //middleware
 app.use(express.json())
+
+//DB CONNECTION
+connectDB(); 
+
 app.get("/", (req, res) => {
     res.send("Vercel API Working");
 });
